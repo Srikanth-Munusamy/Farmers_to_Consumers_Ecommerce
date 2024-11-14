@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FarmXS | Shop</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+</head>
+
+<body>
+
+  <%- include ('partials/header.ejs') %>
+  <br><br>
+
+
+  <!-- Wrap the product list in a container to control its width -->
+  <div class="container">
+
+    <div class="product-container" data-target-date="September 11, 2023 9:27:00">
+      <div class="container2 card border-0">
+        <div class="row align-items-start">
+          <img class="card-img-top" src="Images/Ice Apples.jpeg" style="border-radius: 15px; width: 100%; margin: auto;" alt="">
+          <span class='ct' style="font-size: x-small; margin-left: 50%;">
+            <p style="margin-bottom: 0;">........................................</p>
+          </span>
+          <div class="card-body col" style="padding-left: 15%; padding-top: 0;">
+            <form class="product-form" action="product" method="post" name="product">
+              <h6 class="card-title" style="display: inline;">
+                <%= product.productName %>
+              </h6>
+              <input type="hidden" name="byName" value="Ice Apples">
+
+              <input type="hidden" name="price" value="279">
+              <button class="btn btn-primary" type="submit">Add to cart</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <script>
+    // Function to check if countdown has reached zero
+    function checkCountdown(containerId, targetDate) {
+      var now = new Date().getTime();
+      if (now >= targetDate) {
+        // Countdown has reached zero
+        // Remove the product from the current page (you can hide or remove the container)
+        var container = document.getElementById("container2");
+        container.style.display = "none"; // Hide the container
+
+        // Redirect to another HTML page
+        window.location.href = "another_page.html";
+      }
+    }
+
+    // Usage example:
+    var targetDate1 = new Date("September 20, 2023 21:45:00").getTime();
+    updateCountdown("product1", targetDate1);
+
+    var targetDate2 = new Date("Some other date and time").getTime();
+    updateCountdown("product2", targetDate2);
+
+    // Continuously check the countdown timer
+    setInterval(function() {
+      checkCountdown("product1", targetDate1);
+      checkCountdown("product2", targetDate2);
+    }, 1000); // Check every second
+  </script>
+</body>
+
+</html>

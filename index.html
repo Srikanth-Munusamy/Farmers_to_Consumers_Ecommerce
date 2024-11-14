@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typewriter Effect</title>
+    <style>
+        /* CSS for the container */
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+        }
+
+        /* Center-align the content within the container */
+        .content {
+            text-align: left;
+        }
+
+        /* CSS for the typewriter text */
+        #typewriter-text {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 4rem;
+            font-weight: bold;
+            white-space: pre-line;
+            overflow: hidden;
+            display: inline-block;
+            position: relative;
+            color: green;
+        }
+
+        /* CSS for the additional text */
+        .additional-text {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2rem;
+            font-weight: bold;
+            color: black;
+            margin-top: 10px;
+            opacity: 0;
+            /* Start with opacity 0 for the fade-in effect */
+            transform: translateY(20px);
+            /* Start with a 20px upward translation */
+            transition: opacity 2s ease-in-out, transform 1s ease-in-out;
+            /* Add transitions for opacity and transform */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="content">
+            <div id="typewriter-text"></div>
+            <div class="additional-text" id="additional-text2"></div>
+            <div class="additional-text" id="additional-text3"></div>
+        </div>
+    </div>
+    <script>
+        // JavaScript for the jumbled and rearrange effect
+        const text1 = 'We empower farmers to monetize';
+        const text2 = '         on excess produce while offering quality raw materials';
+        const text3 = '         at competitive prices for your business';
+    
+        const combinedText = text1 + text2 + text3;
+    
+        const typewriterText = document.getElementById("typewriter-text");
+    
+        const typingSpeed = 80;
+        const rearrangeSpeed = 1000; // Adjust the speed as needed
+    
+        let jumbledText = '';
+        let textIndex = 0;
+    
+        // Function to jumble the text and type it
+        function jumbleAndType() {
+            if (textIndex < combinedText.length) {
+                jumbledText += combinedText.charAt(textIndex);
+                typewriterText.innerHTML = scrambleText(jumbledText);
+                textIndex++;
+                setTimeout(jumbleAndType, typingSpeed);
+            } else {
+                // After typing the jumbled text, start rearranging it
+                setTimeout(rearrangeText, rearrangeSpeed);
+            }
+        }
+    
+        // Function to scramble the text
+        function scrambleText(text) {
+            const textArray = text.split('');
+            for (let i = textArray.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [textArray[i], textArray[j]] = [textArray[j], textArray[i]];
+            }
+            return textArray.join('');
+        }
+    
+        // Function to rearrange the text in correct order
+        function rearrangeText() {
+            typewriterText.innerHTML = combinedText;
+        }
+    
+        jumbleAndType(); // Start with jumbled and typing effect
+    </script>
+    
+    
+</body>
+
+</html>
+
+<!-- 
+<script>
+    // JavaScript for the typewriter effect
+    const text1 = 'We empower farmers to monetize';
+    const text2 = '         on excess produce while offering quality raw materials';
+    const text3 = '         at competitive prices for your business';
+
+    let currentText1 = '';
+    let textIndex1 = 0;
+    const typewriterText = document.getElementById("typewriter-text");
+
+    const additionalText2 = document.getElementById("additional-text2");
+    const additionalText3 = document.getElementById("additional-text3");
+
+    const typingSpeed = 80;
+
+    function type1() {
+        if (textIndex1 < text1.length) {
+            currentText1 += text1.charAt(textIndex1);
+            typewriterText.innerHTML = currentText1;
+            textIndex1++;
+            setTimeout(type1, typingSpeed);
+        } else {
+            // After typing text1, add text2 with fade-in and slide-up effect
+            additionalText2.innerHTML = text2;
+            setTimeout(() => {
+                additionalText2.style.opacity = '1';
+                additionalText2.style.transform = 'translateY(0)';
+            }, 100); // Delay the animation for 100 milliseconds
+            type3(); // Start typing text3
+        }
+    }
+
+    function type3() {
+        // After typing text2, add text3 with fade-in and slide-up effect
+        additionalText3.innerHTML = text3;
+        setTimeout(() => {
+            additionalText3.style.opacity = '1';
+            additionalText3.style.transform = 'translateY(0)';
+        }, 100); // Delay the animation for 100 milliseconds
+    }
+
+    type1(); // Start typing text1
+</script> -->
+

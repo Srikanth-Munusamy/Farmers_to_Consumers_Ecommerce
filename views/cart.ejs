@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FarmXS</title>
+  <link rel="icon" type="image/png" href="farm 1.jpg">
+  <link rel="stylesheet" type="text/css" href="css/style.css" />
+  <style>
+    .circle-image {
+      border-radius: 50%;
+      width: 400px;
+      height: 400px;
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <header>
+    <div class="container" style="background-color: white;">
+      <div class="brand">
+        <div class="logo">
+          <a href="index.html">
+            <img src="img/farm 1.jpg" height="100px">
+            <div class="logo-text">
+              <p class="big-logo">FarmXS</p>
+              <p class="small-logo">Reseller</p>
+            </div>
+          </a>
+        </div>
+        <div class="shop-icon">
+          <div class="dropdown">
+            <img src="img/icons/account.png">
+            <div class="dropdown-menu">
+              <ul>
+                <li><a href="account.html">My Account</a></li>
+                <li><a href="orders.html">My Orders</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="dropdown">
+            <img src="img/icons/heart.png">
+            <div class="dropdown-menu wishlist-item">
+
+            </div>
+          </div>
+          <div class="dropdown">
+            <img src="img/icons/shopping_cart.png">
+            <div class="dropdown-menu cart-item">
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-bar">
+        <div class="menu">
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="search-bar">
+          <form>
+            <div class="form-group">
+              <input type="text" class="form-control" name="search" placeholder="Search">
+              <img src="img/icons/search.png">
+            </div>
+          </form>
+        </div>
+      </div>
+    </div> 
+  </header>
+
+  <div class="container">
+    <main style="background-color: #FFDE59;">
+
+      <table style="border: 1px solid black; padding: 5px; border-spacing: 5px">
+        <tr>
+          <td style="width: 100px; font-size: large; text-align: center;">S.no</td>
+          <td style="width: 200px; font-size: large; text-align: center;">Image</td>
+          <td style="width: 250px; font-size: large; text-align: center;">Product</td>
+          <td style="width: 250px; font-size: large; text-align: center;">Price</td>
+          <td style="width: 250px; font-size: large; text-align: center;">Quantity</td>
+        </tr>
+      </table>
+      <table>
+
+        <%for (let i=0; i<cartDB.length; i++){%>
+          <tr>
+            <td style="width: 100px; font-size: large; text-align: center;">
+              <%=i+1%>
+            </td>
+            <td style="width: 200px; font-size: large; text-align: center;"><img src="<%=cartDB[i].imgofProduct%>" class="productImage" alt="hi"></td>
+            <td style="width: 250px; font-size: large; text-align: center;">
+              <%=cartDB[i].nameofProduct%>
+            </td>
+            <td style="width: 250px; font-size: large; text-align: center;">
+              <%=cartDB[i].priceofProduct%>
+            </td>
+            <td style="width: 250px; font-size: large; text-align: center;">
+              <%=cartDB[i].quantityofProduct%>
+            </td>
+          </tr>
+          <%}%>
+      </table>
+    </main>
+  </div>
+
+  <footer>
+    <div class="container">
+      <div class="footer-widget">
+        <div class="widget">
+          <div class="widget-heading">
+            <h3>Important Link</h3>
+          </div>
+          <div class="widget-content">
+            <ul>
+              <li><a href="about.html">About</a></li>
+              <li><a href="contact.html">Contact</a></li>
+              <li><a href="refund.html">Refund Policy</a></li>
+              <li><a href="terms.html">Terms & Conditions</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="widget">
+          <div class="widget-heading">
+            <h3>Information</h3>
+          </div>
+          <div class="widget-content">
+            <ul>
+              <li><a href="account.html">My Account</a></li>
+              <li><a href="orders.html">My Orders</a></li>
+              <li><a href="cart.html">Cart</a></li>
+              <li><a href="checkout.html">Checkout</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="widget">
+          <div class="widget-heading">
+            <h3>Follow us</h3>
+          </div>
+          <div class="widget-content">
+            <div class="follow">
+              <ul>
+                <li><a href="#"><img src="img/icons/facebook.png"></a></li>
+                <li><a href="#"><img src="img/icons/twitter.png"></a></li>
+                <li><a href="#"><img src="img/icons/instagram.png"></a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="widget-heading">
+            <h3>Subscribe for Newsletter</h3>
+          </div>
+          <div class="widget-content">
+            <div class="subscribe">
+              <form>
+                <div class="form-group">
+                  <input type="text" class="form-control" name="subscribe" placeholder="Email">
+                  <img src="img/icons/paper_plane.png">
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <form action="/checkout" method="post"><button type="submit">Checkout</button></form>
+      </div>
+      <div class="footer-bar">
+        <div class="copyright-text">
+          <p>Copyright 2021 - All Rights Reserved</p>
+        </div>
+
+      </div>
+    </div>
+  </footer>
+</body>
+
+</html>

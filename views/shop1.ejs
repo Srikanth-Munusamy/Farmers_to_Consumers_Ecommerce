@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FarmXS | Shop</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <style>
+    /* Center the content both horizontally and vertically */
+    .none {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      /* 100% viewport height */
+      background-color: rgba(255, 255, 255, 0.8);
+      /* Greyish transparent background */
+    }
+
+    /* Style the text */
+    .none {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 36px;
+      /* Adjust the font size as needed */
+      color: grey;
+      text-align: center;
+    }
+
+    /* Display products side by side with a maximum of 5 per row */
+    .product-container {
+      display: inline-block;
+      width: calc(20% - 20px);
+      /* 5 columns with 20px margin in between */
+      margin: 10px;
+      vertical-align: top;
+    }
+
+    /* Responsive styles for smaller screens */
+    @media screen and (max-width: 768px) {
+      .product-container {
+        width: calc(50% - 20px);
+        /* 2 columns for screens <= 768px */
+      }
+    }
+
+    /* Responsive styles for even smaller screens */
+    @media screen and (max-width: 576px) {
+      .product-container {
+        width: 100%;
+        /* 1 column for screens <= 576px */
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <%- include ('partials/header.ejs') %>
+  <br><br><br>
+  <!-- 
+  <div class="carousel" style="margin-left: 2%">
+
+    <% if (!produces || produces.length===0) { %>
+    <p class="none">No products found</p>
+    <% } else { %>
+    <% produces.forEach(product=> { %>
+    <div class="container card border-0" style="width: 15rem; display: inline-block;">
+      <div class="row align-items-start">
+        <img class="card-img-top" src="Images/Amrut Payri Mango - Organic.jpeg" style="display: block; border-radius: 15px; width: 75%; margin: auto;" alt="">
+        <span class='ct' style="font-size:x-small; margin-left: 50%;">
+          <p style="margin-bottom: 0;">........................................</p>
+        </span>
+        <div class="card-body col" style="padding-left: 15%; padding-top: 0;">
+          <form class="" action="product" method="post" name="product">
+            <h6 class="card-title" style="display: inline;">
+              <%= product.productName %> <p style="display: inline;">(</p><%= product.productQuantity %><p style="display: inline;">kg)</p>
+            </h6>
+            <p>
+              <%= product.sellerName %>
+            </p>
+            <p>₹<%= product.productPrice %>/Kg</p><input type="hidden" name="price" value="1800">
+            <button class="btn btn-primary" type="submit">Add to cart</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <% }); %>
+    <% } %>
+
+    <div class="container card border-0" style="width: 15rem; display: inline-block;">
+      <div class="row align-items-start">
+        <img class="card-img-top" src="Images/Star Fruit - Organic.jpeg" style="border-radius: 15px; width: 75%; margin: auto;" alt="">
+        <span class='ct' style="font-size:x-small; margin-left: 50%;">
+          <p style="margin-bottom: 0;">........................................</p>
+        </span>
+        <div class="card-body col" style="padding-left: 15%; padding-top: 0;">
+          <form class="" action="product" method="post" name="product">
+            <h6 class="card-title" style="display: inline;">Star Fruit - Organic</h6>
+            <input type="hidden" name="byName" value="Star Fruit - Organic">
+            <p>Back2Basics.Farm</p>
+            <p>₹ 150/Kg</p><input type="hidden" name="price" value="150">
+            <button class="btn btn-primary" type="submit">Add to cart</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="container card border-0" style="width: 15rem; display: inline-block;">
+      <div class="row align-items-start">
+        <img class="card-img-top" src="Images/Kesar Mango - Natural.jpeg" style="border-radius: 15px; width: 75%; margin: auto;" alt="">
+        <span class='ct' style="font-size:x-small; margin-left: 50%;">
+          <p style="margin-bottom: 0;">........................................</p>
+        </span>
+        <div class="card-body col" style="padding-left: 15%; padding-top: 0;">
+          <form class="" action="product" method="post" name="product">
+            <h6 class="card-title" style="display: inline;">Kesar Mango - Natural</h6>
+            <input type="hidden" name="byName" value="Kesar Mango - Natural">
+            <p>Kalpatharu Organics</p>
+            <p>₹ 239/Kg</p><input type="hidden" name="price" value="239">
+            <button class="btn btn-primary" type="submit">Add to cart</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="container card border-0" style="width: 15rem; display: inline-block;">
+      <div class="row align-items-start">
+        <img class="card-img-top" src="Images/Pomelo - Organically Grown.jpeg" style="border-radius: 15px; width: 75%; margin: auto;" alt="">
+        <span class='ct' style="font-size:x-small; margin-left: 50%;">
+          <p style="margin-bottom: 0;">........................................</p>
+        </span>
+        <div class="card-body col" style="padding-left: 15%; padding-top: 0;">
+          <form class="" action="product" method="post" name="product">
+            <h6 class="card-title" style="display: inline;">Pomelo - Organically Grown</h6>
+            <input type="hidden" name="byName" value="Pomelo - Organically Grown">
+            <p>Anbarasan</p>
+            <p>₹ 119/Kg</p><input type="hidden" name="price" value="119">
+            <button class="btn btn-primary" type="submit">Add to cart</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="container card border-0" style="width: 15rem; display: inline-block;">
+      <div class="row align-items-start">
+        <img class="card-img-top" src="Images/Sharbati Peach - Organic.jpeg" style="border-radius: 15px; width: 75%; margin: auto;" alt="">
+        <span class='ct' style="font-size:x-small; margin-left: 50%;">
+          <p style="margin-bottom: 0;">........................................</p>
+        </span>
+        <div class="card-body col" style="padding-left: 15%; padding-top: 0;">
+          <form class="" action="product" method="post" name="product">
+            <h6 class="card-title" style="display: inline;">Sharbati Peach - Organic</h6>
+            <input type="hidden" name="byName" value="Sharbati Peach - Organic">
+            <p>Mrs. Manjula Sachdeva</p>
+            <p>₹ 599/Kg</p><input type="hidden" name="price" value="599">
+            <button class="btn btn-primary" type="submit">Add to cart</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="container card border-0" style="width: 15rem; display: inline-block;">
+      <div class="row align-items-start">
+        <img class="card-img-top" src="Images/Merchant Cherry - Organic.jpeg" style="border-radius: 15px; width: 75%; margin: auto;" alt="">
+        <span class='ct' style="font-size:x-small; margin-left: 50%;">
+          <p style="margin-bottom: 0;">........................................</p>
+        </span>
+        <div class="card-body col" style="padding-left: 15%; padding-top: 0;">
+          <form class="" action="product" method="post" name="product">
+            <h6 class="card-title" style="display: inline;">Merchant Cherry - Organic</h6>
+            <input type="hidden" name="byName" value="Merchant Cherry - Organic">
+            <p>Singh Apple Orchard</p>
+            <p>₹ 469/Kg</p><input type="hidden" name="price" value="469">
+            <button class="btn btn-primary" type="submit">Add to cart</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="container card border-0" style="width: 15rem; display: inline-block;">
+      <div class="row align-items-start">
+        <img class="card-img-top" src="Images/Banganpally Mango - Organic.jpeg" style="border-radius: 15px; width: 75%; margin: auto;" alt="">
+        <span class='ct' style="font-size:x-small; margin-left: 50%;">
+          <p style="margin-bottom: 0;">........................................</p>
+        </span>
+        <div class="card-body col" style="padding-left: 15%; padding-top: 0;">
+          <form class="" action="product" method="post" name="product">
+            <h6 class="card-title" style="display: inline;">Banganpally Mango - Organic</h6>
+            <input type="hidden" name="byName" value="Banganpally Mango - Organic">
+            <p>Seshu (Hampi Organic)</p>
+            <p>₹ 399/Kg</p><input type="hidden" name="price" value="399">
+            <button class="btn btn-primary" type="submit">Add to cart</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="container container2 card border-0" style="width: 15rem; display: inline-block;">
+      <div class="row align-items-start">
+        <img class="card-img-top" src="Images/Ice Apples.jpeg" style="border-radius: 15px; width: 75%; margin: auto;" alt="">
+        <span class='ct' style="font-size:x-small; margin-left: 50%;">
+          <p style="margin-bottom: 0;">........................................</p>
+        </span>
+        <div class="card-body col" style="padding-left: 15%; padding-top: 0;">
+          <form class="" action="product" method="post" name="product">
+            <h6 class="card-title" style="display: inline;">Ice Apples</h6>
+            <input type="hidden" name="byName" value="Ice Apples">
+            <p>Kamalesan M</p>
+            <p>₹ 10/Kg</p><input type="hidden" name="price" value="279">
+            <button class="btn btn-primary" type="submit">Add to cart</button>
+          </form>
+        </div>
+      </div>
+    </div> -->
+
+  <% produces.forEach(product => { %>
+  <div class="container container2 card border-0" style="width: 15rem; display: inline-block;">
+    <div class="row align-items-start">
+      <img class="card-img-top" src="Images/<%= product.productName + '.jpeg' %>" style="display: block; border-radius: 15px; width: 75%; margin: auto;" alt="Images/<%= product.productName + '.jpeg' %>">
+      <span class='ct' id="countdown-<%= product._id %>" style="font-size: x-small; margin-left: 50%;">
+        <p style="margin-bottom: 0;">........................................</p>
+      </span>
+      <div class="card-body col" style="padding-left: 15%; padding-top: 0;">
+        <form class="" action="product" method="post" name="product">
+          <h6 class="card-title" style="display: inline;">
+            <%= product.productName %>
+          </h6>
+          <p style=" display: inline;">(</p><%= product.productQuantity %>
+        <p style="display: inline;">kg)</p>
+        <p>
+          <%= product.sellerName %>
+        </p>
+        <p>₹<%= product.productPrice %>/Kg</p><input type="hidden" name="price" value="1800">
+        <button class="btn btn-primary" type="submit">Add to cart</button>
+        </form>
+    </div>
+  </div>
+  </div>
+
+  <!-- Add this script tag to your shop.ejs file -->
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+    const socket = io();
+
+    const productId = '<%= product._id %>';
+    const countdownElement = document.getElementById('countdown-<%= product._id %>');
+
+    socket.emit('subscribe', productId);
+
+    socket.on('remainingTime', (data) => {
+      if (data.productId === productId) {
+        const remainingTime = data.remainingTime;
+        const hours = Math.floor(remainingTime / 3600000);
+        const minutes = Math.floor((remainingTime % 3600000) / 60000);
+        const seconds = Math.floor((remainingTime % 60000) / 1000);
+        countdownElement.innerHTML = `${hours}h:${minutes}m:${seconds}s`
+;
+      }
+    });
+  });
+  </script>
+
+  <% }); %>
+
+  <%- include ('partials/footer.ejs') %>
+
+</body>
+
+</html>

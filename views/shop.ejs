@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FarmXS | Shop</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <style>
+    /* Center the content both horizontally and vertically */
+    .none {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      /* 100% viewport height */
+      background-color: rgba(255, 255, 255, 0.8);
+      /* Greyish transparent background */
+    }
+
+    /* Style the text */
+    .none {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 36px;
+      /* Adjust the font size as needed */
+      color: grey;
+      text-align: center;
+    }
+
+    /* Display products side by side with a maximum of 5 per row */
+    .product-container {
+      display: inline-block;
+      width: calc(20% - 20px);
+      /* 5 columns with 20px margin in between */
+      margin: 10px;
+      vertical-align: top;
+    }
+
+    /* Responsive styles for smaller screens */
+    @media screen and (max-width: 768px) {
+      .product-container {
+        width: calc(50% - 20px);
+        /* 2 columns for screens <= 768px */
+      }
+    }
+
+    /* Responsive styles for even smaller screens */
+    @media screen and (max-width: 576px) {
+      .product-container {
+        width: 100%;
+        /* 1 column for screens <= 576px */
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <%- include ('partials/header.ejs') %>
+  <br><br>
+
+  <div class="carousel" style="margin-left: 2%">
+
+    <% if (!produces || produces.length===0) { %>
+    <p class="none">No products found</p>
+    <% } else { %>
+    <% produces.forEach(product=> { %>
+    <div class="container card border-0" data-target-date="" style="width: 15rem; display: inline-block;">
+      <div class="row align-items-start">
+
+        <img class="card-img-top" src="Images/<%=product.productName +'.jpeg' %>" style="display: block; border-radius: 15px; width: 75%; margin: auto;" alt="Images/<%=product.productName +'.jpeg' %>">
+        <span class='ct' style="font-size:x-small; margin-left: 50%;">
+          <p style="margin-bottom: 0;">........................................</p>
+        </span>
+        <div class="card-body col" style="padding-left: 15%; padding-top: 0;">
+          <form class="" action="product" method="post" name="product">
+            <h6 class="card-title" style="display: inline;">
+              <%= product.productName %>
+            </h6>
+            <p style="display: inline;">(</p><%= product.productQuantity %>
+            <p style="display: inline;">kg)</p>
+            <p>
+              <%= product.sellerName %>
+            </p>
+            <p>₹<%= product.productPrice %>/Kg</p><input type="hidden" name="price" value="1800">
+            <button class="btn btn-primary" type="submit">Add to cart</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <% }); %>
+    <% } %>
+  </div>
+
+</body>
+
+</html>
